@@ -1,3 +1,6 @@
+import axios from "axios";
+
+
 const { getCookie, setCookie } = require("../utils/cookie");
 
 const api = axios.create({
