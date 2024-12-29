@@ -1,10 +1,19 @@
-import AuthForm from "../components/templates/authForm";
+import ModalContainer from "../components/partials/container/ModalContainer";
+import Layout from "../components/templates/layout/Layout";
+import TourList from "../components/templates/TourList";
+import { serverFetch } from "../core/services/http";
 
-export default function Home() {
+async function Home({ searchParams }) {
+  const data = await serverFetch("tour", searchParams, { cache: "no-store" });
   return (
     <div>
-      <h1>ehsan academy</h1>
-      <AuthForm />
+      <Layout>
+       
+        <ModalContainer />
+        <TourList toursData={data} />
+      </Layout>
     </div>
   );
 }
+
+export default Home;

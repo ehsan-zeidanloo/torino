@@ -5,7 +5,7 @@ import { setCookie } from "@/src/core/utils/cookie";
 import { useState } from "react";
 import OtpInput from "react18-input-otp";
 
-function CheckOtpForm({ mobile, setStep }) {
+function CheckOtpForm({ mobile, setStep,setIsOpen }) {
   const [code, setCode] = useState("");
   const { isPending, mutate } = useCheckOtp();
 
@@ -18,7 +18,7 @@ function CheckOtpForm({ mobile, setStep }) {
       {
         onSuccess: (data) => {
           console.log(data),
-            setCookie("accessToken", data?.data?.accessToken, 30);
+          setCookie("accessToken", data?.data?.accessToken, 30);
           setCookie("refreshToken", data?.data?.refreshToken, 365);
           setIsOpen(false);
           setStep(1);
@@ -49,7 +49,7 @@ function CheckOtpForm({ mobile, setStep }) {
             value={code}
             onChange={changeHandler}
             numInputs={6}
-            separator={<span>-</span>}
+            separator={<span> </span>}
             inputStyle={{
               border: "1px solid silver",
               borderRadius: "5px",
